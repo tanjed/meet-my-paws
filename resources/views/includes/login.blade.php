@@ -5,6 +5,15 @@
 <!-- Mirrored from friendkit.cssninja.io/login-boxed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Jun 2021 05:12:44 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 @include('includes.head')
+<style>
+    .active{
+        background: gray !important;
+        color: whitesmoke !important;
+    }
+    .nav-link{
+        border-color: #dee2e6 !important;
+    }
+</style>
 
 <body>
 
@@ -29,12 +38,21 @@
 
                         <h2 class="form-title has-text-centered">Welcome Back</h2>
                         <h3 class="form-subtitle has-text-centered">Enter your credentials to sign in.</h3>
-
                         <!--Form-->
                         <form method="POST" action="/login-action">
                             @csrf
                             <div class="login-form">
                                 <div class="form-panel">
+                                    <center><label>Login As:</label></center>
+                                    <ul class="nav nav-tabs justify-content-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#" data-value="pet_owner">Pet Owner</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-value="fonder">Fonder</a>
+                                        </li>
+                                    </ul>
+                                    <br>
                                     <div class="field">
                                         <label>Email</label>
                                         <div class="control">
@@ -47,26 +65,29 @@
                                             <input type="password" class="input" placeholder="Enter your password" name="password" required>
                                         </div>
                                     </div>
-                                    <div class="field">
-                                        <select class="control" name="login_as" required>
-                                            <option>Login As</option>
-                                            <option value="pet_owner">Pet Owner</option>
-                                            <option value="funder">Funder</option>
-
-                                          </select>
-                                    </div>
-                                    <div class="field is-flex">
-                                        <div class="switch-block">
-                                            <label class="f-switch">
-                                                <input type="checkbox" class="is-switch">
-                                                <i></i>
-                                            </label>
-                                            <div class="meta">
-                                                <p>Remember me?</p>
-                                            </div>
+                                    <div class="field d-none">
+                                        <div class="control">
+                                            <input type="text" class="input" name="login_as" value="pet_owner" required>
                                         </div>
-                                        {{-- <a>Forgot Password?</a> --}}
                                     </div>
+{{--                                    <div>--}}
+{{--                                        <select class="" name="login_as" required>--}}
+{{--                                            <option value="pet_owner">Pet Owner</option>--}}
+{{--                                            <option value="funder">Funder</option>--}}
+{{--                                          </select>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="field is-flex">--}}
+{{--                                        <div class="switch-block">--}}
+{{--                                            <label class="f-switch">--}}
+{{--                                                <input type="checkbox" class="is-switch">--}}
+{{--                                                <i></i>--}}
+{{--                                            </label>--}}
+{{--                                            <div class="meta">--}}
+{{--                                                <p>Remember me?</p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        --}}{{-- <a>Forgot Password?</a> --}}
+{{--                                    </div>--}}
                                 </div>
 
                                 <div class="buttons">
@@ -113,35 +134,15 @@
     <script src="/assets/js/popovers-pages.js"></script>
     <script src="/assets/js/lightbox.js"></script>
 
-    <!-- Landing page js -->
+    <script>
+        $('.nav-link').click(function () {
+            $('.nav-link').toggleClass('active')
+            $("input[name='login_as']").val($(this).data('value'))
+        });
+        (function (){
 
-    <!-- Signup page js -->
-
-    <!-- Feed pages js -->
-
-    <!-- profile js -->
-
-    <!-- stories js -->
-
-    <!-- friends js -->
-
-    <!-- questions js -->
-
-    <!-- video js -->
-
-    <!-- events js -->
-
-    <!-- news js -->
-
-    <!-- shop js -->
-
-    <!-- inbox js -->
-
-    <!-- settings js -->
-
-    <!-- map page js -->
-
-    <!-- elements page js -->
+        })();
+    </script>
 </body>
 
 
