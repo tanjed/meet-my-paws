@@ -10,7 +10,8 @@ use Webpatser\Uuid\Uuid;
 
 class RegisterController extends Controller
 {
-    public function registerView(){
+    public function registerView()
+    {
 
         return view('includes.registration');
     }
@@ -23,11 +24,11 @@ class RegisterController extends Controller
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
-        if($request['register_as']=='pet_owner'){
+        if ($request['register_as'] == 'pet_owner') {
             $uuid = (string) Uuid::generate();
 
 
-            $pet_owner  = New PetOwner();
+            $pet_owner  = new PetOwner();
             $pet_owner->name = $request['name'];
             $pet_owner->uuid = $uuid;
             $pet_owner->user_role = 'Pet Owner';
@@ -35,9 +36,9 @@ class RegisterController extends Controller
             $pet_owner->password = Hash::make($request['password']);
             $pet_owner->save();
             return redirect()->to('/login');
-        }else{
+        } else {
             $uuid = (string) Uuid::generate();
-            $funder  = New Funder();
+            $funder  = new Funder();
             $funder->name = $request['name'];
             $funder->uuid = $uuid;
             $funder->user_role = 'Funder';
@@ -46,6 +47,5 @@ class RegisterController extends Controller
             $funder->save();
             return redirect()->to('/login');
         }
-
     }
 }
